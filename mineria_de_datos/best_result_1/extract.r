@@ -28,14 +28,14 @@ drop_cols_ <- function(dt, drop_cols) {
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 print('DATA LOAD')
 print('DATA LOAD')
-data_percentage_to_load <- 0.4
+data_percentage_to_load <- 0.01
 
 print('Load training data')
 data_set <- load_train_data(data_dir,data_percentage_to_load) #30% of data to fit the model
 
 #create a traingin and a validation set
 print('Prepare training data')
-val_index <- sample(c(1:nrow(data_set)), nrow(data_set)*.1) # 90% para training - 10% Evaluacion
+val_index <- sample(c(1:nrow(data_set)), nrow(data_set)*.1) # 90% para training - 10% validacion
 data_set$train_sample <- "training"
 data_set[val_index, "train_sample"] <- "validation"  # Se deja septiembre para validación
 data_set$Label <- ifelse(data_set$Label, "click", "no_click")

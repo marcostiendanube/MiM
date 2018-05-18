@@ -4,11 +4,10 @@
 #Clean memmory
 rm(list = ls())
 #Define working dirs
-# data_dir <- 'C:/Users/Marcos/Documents/MiM/Mineria de Datos/tp1/data'
-# script_dir <- 'C:/Users/Marcos/OneDrive - Tienda Nube/MiM/Mineria de Datos/tp/tp1/script'
-
-script_dir <- '/mnt/c/Users/Marcos/OneDrive - Tienda Nube/MiM/code/MiM/mineria_de_datos/best_result_2'
-data_dir <- '/mnt/c/Users/Marcos/OneDrive - Tienda Nube/MiM/Mineria de Datos/tp/data'
+data_dir <- 'C:/Users/Marcos/OneDrive - Tienda Nube/MiM/Mineria de Datos/tp/data'
+script_dir <- 'C:/Users/Marcos/OneDrive - Tienda Nube/MiM/code/MiM/mineria_de_datos/best_result_2'
+# script_dir <- '/mnt/c/Users/Marcos/OneDrive - Tienda Nube/MiM/code/MiM/mineria_de_datos/best_result_2'
+# data_dir <- '/mnt/c/Users/Marcos/OneDrive - Tienda Nube/MiM/Mineria de Datos/tp/data'
 #Load required libraries
 source(paste(script_dir,'/utils.R', sep = '')) #My custom made functions
 library('caret')
