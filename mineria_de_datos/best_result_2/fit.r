@@ -5,18 +5,18 @@
 rm(list = ls())
 
 #Define working dirs
-# data_dir <- 'C:/Users/Marcos/Documents/MiM/Mineria de Datos/tp1/data'
-# script_dir <- 'C:/Users/Marcos/OneDrive - Tienda Nube/MiM/Mineria de Datos/tp/tp1/script'
+data_dir <- 'C:/Users/Marcos/OneDrive - Tienda Nube/MiM/Mineria de Datos/tp/data'
+script_dir <- 'C:/Users/Marcos/OneDrive - Tienda Nube/MiM/code/MiM/mineria_de_datos/best_result_2'
 
-script_dir <- '/mnt/c/Users/Marcos/OneDrive - Tienda Nube/MiM/code/MiM/mineria_de_datos/best_result_2'
-data_dir <- '/mnt/c/Users/Marcos/OneDrive - Tienda Nube/MiM/Mineria de Datos/tp/data'
+# script_dir <- '/mnt/c/Users/Marcos/OneDrive - Tienda Nube/MiM/code/MiM/mineria_de_datos/best_result_2'
+# data_dir <- '/mnt/c/Users/Marcos/OneDrive - Tienda Nube/MiM/Mineria de Datos/tp/data'
 #Load required libraries
 source(paste(script_dir,'/utils.R', sep = '')) #My custom made functions
 library('caret')
 library('dplyr')
 
 
-# memory.limit(50000) #Incremento la memoria para que no de error
+memory.limit(50000) #Incremento la memoria para que no de error
 #Parece que es mas lento.
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # DATA LOAD (build working data_set)
@@ -33,11 +33,11 @@ str(data_set)
 print('MODEL FIT')
 
 # Creo los indices de validacion y entrenamiento
-indexIn <- list()
-indexIn[["tr1"]] <- which(data_set$train_sample=="training")  # Indico con qué entrenar
-indexOut <- list()
-indexOut[["tr1"]] <- which(data_set$train_sample=="validation")  # Indico con qué validar
-
+# indexIn <- list()
+# indexIn[["tr1"]] <- which(data_set$train_sample=="training")  # Indico con qué entrenar
+# indexOut <- list()
+# indexOut[["tr1"]] <- which(data_set$train_sample=="validation")  # Indico con qué validar
+#
 #CREO EL MODELO
 fitControl <- trainControl(method="LGOCV",  # Esto da igual
                            number = 5,
@@ -71,9 +71,9 @@ print('BEST FITTING RESULT')
 print(xgbFit$results[which.max(xgbFit$results$ROC),]) #Imprimo el ROC optimo del modelo.
 write.table(varImp(xgbFit)$importance,paste(data_dir,'/var_importance_model_',format(Sys.time(), "%Y%m%d%H%M%S"),'.csv', sep = ''),
            sep=',', quote=FALSE)
-write.table(xgbFit$results[which.max(xgbFit$results$ROC),],paste(mod_dir,'/best_auc_model_',format(Sys.time(), "%Y%m%d%H%M%S"),'.csv', sep = ''),
+write.table(xgbFit$results[which.max(xgbFit$results$ROC),],paste(data_dir,'/best_auc_model_',format(Sys.time(), "%Y%m%d%H%M%S"),'.csv', sep = ''),
            sep=',', quote=FALSE, row.names=FALSE)
-saveRDS(xgbFit, file = paste(mod_dir,'/model_',format(Sys.time(), "%Y%m%d%H%M%S"),'.rds', sep = ''))
+saveRDS(xgbFit, file = paste(data_dir,'/model_',format(Sys.time(), "%Y%m%d%H%M%S"),'.rds', sep = ''))
 # png(paste(data_dir,'/model_',format(Sys.time(), "%Y%m%d%H%M%S"),'.png', sep = ''))
 # plot(varImp(xgbFit)) #Veo la importancia de las variables
 # dev.off()
