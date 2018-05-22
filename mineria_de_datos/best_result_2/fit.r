@@ -24,7 +24,7 @@ memory.limit(50000) #Incremento la memoria para que no de error
 print('DATA LOAD')
 
 #data_set <- readRDS(paste(data_dir,'/data_set_full.rds', sep = ''))
-data_set <- readRDS(paste(data_dir,'/data_set_0.3_v3.6.1.rds', sep = ''))
+data_set <- readRDS(paste(data_dir,'/data_set_0.4_v3.6.1.rds', sep = ''))
 str(data_set)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #

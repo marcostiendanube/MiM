@@ -24,13 +24,31 @@ memory.limit(50000) #Incremento la memoria para que no de error
 print('DATA LOAD')
 
 #data_set <- readRDS(paste(data_dir,'/data_set_full.rds', sep = ''))
-data_set <- readRDS(paste(data_dir,'/data_set_0.01_v3.6.1.rds', sep = ''))
+data_set <- readRDS(paste(data_dir,'/data_set_0.1.rds', sep = ''))
 str(data_set)
+
+prop.table(table(data_set$Label,data_set$creative_size))
+
+library(ggplot2)
+ggplot(data_set[data_set$train_sample!="evaluation",], aes(x=auction_bidfloor, fill=Label)) +
+  geom_density(alpha=0.5) + xlim(0,5) + ylim(0,1)
+
+
+ggplot(data_set[data_set$train_sample!="evaluation",], aes(x=auction_categorical_7, fill=Label)) +
+  geom_density(alpha=0.5)
+
+ggplot(data_set, aes(x=creative_height,y=creative_width)) +
+  geom_point() + geom_smooth(method=lm)
+
+plot(data_set$Label)
+
+hist(data_set[data_set$train_sample!="evaluation",]$auction_categorical_7)
+
+hist(table(data_set$Label,data_set$creative_size))
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # MODEL FIT
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-print('MODEL FIT')
 
 # Creo los indices de validacion y entrenamiento
 # indexIn <- list()
