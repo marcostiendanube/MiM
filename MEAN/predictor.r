@@ -17,6 +17,11 @@ predecir_partido <- function (equipo_1,equipo_2,df_equipos, modelo){
                         X3 = x_equipo_2$X3,X4 = x_equipo_1$X4,X5 = x_equipo_2$X5,
                         X6 = x_equipo_2$X6,X7 = x_equipo_2$X7,X8 = x_equipo_2$X8,
                         X9 = x_equipo_1$X8,X10 = x_equipo_2$X10,X11 = x_equipo_1$X10))
+  #Aplicamos el factor suerte
+  set.seed(2018)
+  goles_equipo_1 <- goles_equipo_1 + rnorm(1,0,0.5)
+  goles_equipo_2 <- goles_equipo_2 + rnorm(1,0,0.5)
+
   # ganador {1,2} -> 1: gana Equipo1, 2: gana Equipo2
   ganador <- ifelse(goles_equipo_1 > goles_equipo_2,1,2)
   # goles_equipo_n -> goles redondeado sin decimales
